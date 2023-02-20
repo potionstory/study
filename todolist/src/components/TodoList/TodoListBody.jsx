@@ -3,7 +3,6 @@ import TodoListItem from "./TodoListItem";
 import { TodoListBodyWrap } from "./style";
 
 function TodoListBody({ todos, onTodoToggle, onTodoRemove }) {
-  console.log(todos);
   return (
     <TodoListBodyWrap>
       {todos.length !== 0 ? (

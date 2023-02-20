@@ -8,9 +8,7 @@ function TodoListHeader({ todos }) {
   const todayArray = useMemo(() => {
     return todayDate.toLocaleDateString("ko-KR").split(".");
   }, []);
-
   const todayWeek = week[todayDate.getDay()];
-
   const completeCount = todos.filter((todo) => todo.isComplete).length;
 
   return (

@@ -2,7 +2,6 @@ import React from "react";
 
 function TodoListItem({ todo, isComplete, onTodoToggle, onTodoRemove }) {
   const { id, title } = todo;
-  console.log("TodoListItem: ", id, isComplete, title);
 
   return (
     <li>

@@ -1,15 +1,15 @@
-import React, { useCallback } from "react";
-import { TodoListWrap } from "./style";
-import TodoListBody from "./TodoListBody";
+import React, { useState, useRef, useCallback } from "react";
 import TodoListHeader from "./TodoListHeader";
+import TodoListBody from "./TodoListBody";
 import TodoListFooter from "./TodoListFooter";
-import { useState, useRef } from "react";
+import { TodoListWrap } from "./style";
 
 function TodoList() {
   const [todos, setTodos] = useState([]);
   const [title, setTitle] = useState("");
   const todoId = useRef(0);
 
+  // todo 추가
   const onTodoAdd = useCallback(() => {
     if (todos.filter((todo) => todo.title === title).length === 1) {
       alert("이미 존재하는 할일입니다.");
@@ -31,8 +31,8 @@ function TodoList() {
     }
   }, [title, todos]);
 
+  // todo 토글
   const onTodoToggle = useCallback((e, id) => {
-    console.log("onTodoToggle: ", id, e.target.checked);
     setTodos((prevState) => {
       const newTodos = prevState.map((todo) => {
         if (todo.id === id) {
@@ -45,6 +45,7 @@ function TodoList() {
     });
   }, []);
 
+  // todo 삭제
   const onTodoRemove = useCallback((id) => {
     setTodos((prevState) => {
       const newTodos = prevState.filter((todo) => todo.id !== id);
@@ -53,6 +54,7 @@ function TodoList() {
     });
   }, []);
 
+  // title change
   const onTitleChange = useCallback((e) => {
     setTitle(e.target.value);
   }, []);

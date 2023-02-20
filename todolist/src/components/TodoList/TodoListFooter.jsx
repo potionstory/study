@@ -1,10 +1,10 @@
-import React, { useCallback } from "react";
+import React, { useRef, useCallback, useEffect } from "react";
 import { TodoListFooterWrap, TodoListFooterButton } from "./style";
-import { useRef, useEffect } from "react";
 
 function TodoListFooter({ title, onTitleChange, onTodoAdd }) {
   const inputRef = useRef(null);
 
+  // enter key event
   const onEnterKeyUp = useCallback(
     (e) => {
       if (e.key === "Enter") {
