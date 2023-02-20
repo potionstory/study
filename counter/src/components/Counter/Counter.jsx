@@ -6,9 +6,9 @@ function Counter() {
 
 	const onButtonHandler = (e) => {
 		if (e.target.className === "minus") {
-			setCounter(counter - 1);
+			setCounter((prevCount) => prevCount - 1);
 		} else {
-			setCounter(counter + 1);
+			setCounter((prevCount) => prevCount + 1);
 		}
 	};
 
