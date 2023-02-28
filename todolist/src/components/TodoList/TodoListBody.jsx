@@ -1,23 +1,20 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import TodoListItem from "./TodoListItem";
 import { TodoListBodyWrap } from "./style";
 
-function TodoListBody({ todos, onTodoToggle, onTodoRemove }) {
+function TodoListBody() {
+  const { list } = useSelector((state) => state.todolist);
+
   return (
     <TodoListBodyWrap>
-      {todos.length !== 0 ? (
+      {list.length !== 0 ? (
         <ul>
-          {todos.map((todo) => {
+          {list.map((todo) => {
             const { id, isComplete } = todo;
 
             return (
-              <TodoListItem
-                key={id}
-                todo={todo}
-                isComplete={isComplete}
-                onTodoToggle={onTodoToggle}
-                onTodoRemove={onTodoRemove}
-              />
+              <TodoListItem key={id} todo={todo} isComplete={isComplete} />
             );
           })}
         </ul>

@@ -1,7 +1,19 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { todoToggle, todoRemove } from "../../store/todolistSlice";
 
-function TodoListItem({ todo, isComplete, onTodoToggle, onTodoRemove }) {
+function TodoListItem({ todo, isComplete }) {
   const { id, title } = todo;
+
+  const dispatch = useDispatch();
+
+  const onTodoToggle = (id) => {
+    dispatch(todoToggle(id));
+  };
+
+  const onTodoRemove = (id) => {
+    dispatch(todoRemove(id));
+  };
 
   return (
     <li>
@@ -9,8 +21,8 @@ function TodoListItem({ todo, isComplete, onTodoToggle, onTodoRemove }) {
         id={id}
         type="checkbox"
         checked={isComplete}
-        onChange={(e) => {
-          onTodoToggle(e, id);
+        onChange={() => {
+          onTodoToggle(id);
         }}
       />
       <label htmlFor={id}>{title}</label>

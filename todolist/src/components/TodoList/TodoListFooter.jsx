@@ -1,8 +1,23 @@
-import React, { useRef, useCallback, useEffect } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { todoAdd } from "../../store/todolistSlice";
 import { TodoListFooterWrap, TodoListFooterButton } from "./style";
 
-function TodoListFooter({ title, onTitleChange, onTodoAdd }) {
+function TodoListFooter() {
+  const dispatch = useDispatch();
   const inputRef = useRef(null);
+
+  const [title, setTitle] = useState("");
+
+  // title change
+  const onTitleChange = useCallback((e) => {
+    setTitle(e.target.value);
+  }, []);
+
+  const onTodoAdd = useCallback(() => {
+    dispatch(todoAdd(title));
+    setTitle("");
+  }, [dispatch, title]);
 
   // enter key event
   const onEnterKeyUp = useCallback(
@@ -28,9 +43,7 @@ function TodoListFooter({ title, onTitleChange, onTodoAdd }) {
         onChange={onTitleChange}
         onKeyUp={onEnterKeyUp}
       />
-      <TodoListFooterButton isActive={title.length !== 0} onClick={onTodoAdd}>
-        추가
-      </TodoListFooterButton>
+      <TodoListFooterButton onClick={onTodoAdd}>추가</TodoListFooterButton>
     </TodoListFooterWrap>
   );
 }
